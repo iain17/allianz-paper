@@ -390,7 +390,7 @@ for the degree of Doctor of Philosophy%
 				\fi%
 			{\@title{}}%
 			\ifcam@firstyr\\%
-				{\vspace{5mm}\emph{\LARGE Een onderzoek naar de blockchain en smart contracts}}%
+				{\vspace{5mm}\emph{\LARGE Blockchain en Smart contract technologie gebruiken om een gedistribueerd claim systeem te ontwikkelen}}%
 			\fi%
 			\ifcam@secondyr\\%
 				{\vspace{5mm}\emph{\LARGE Dissertation Schedule}}%
