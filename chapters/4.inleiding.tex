@@ -1,39 +1,30 @@
 \chapter{Inleiding}
-\section{Motivatie}
-Verzekeringsmaatschappijen zoals Allianz verzekeren panden voor miljoenen. Dit type verzekeringen worden in de praktijk gedeeld met meerdere verzekeraars, om zo het risico te verspreiden. Dit principe heet co-insurance en de verzekeringen worden in een bestaand systeem genaamd E-ABS 1 opgeslagen door de verschillende verzekeraars.
-Het probleem en ook gelijk de aanleiding voor dit onderzoek is dat het claimproces te veel tijd kost voordat deze wordt uitgekeerd naar de klant. Waardoor klanten van Allianz ontevreden zijn. Dit komt omdat het claimproces buiten E-ABS loopt waardoor een claim door de broker (makelaar) en de verschillende verzekeringsmaatschappijen met handmatige bedrijfsprocessen eerst gevalideerd moeten worden en gezamenlijk uitgekeerd. Het proces wordt momenteel bij Allianz gedaan met Excel bestanden, maar dit verschilt per verzekeringmaatschappij.
+Allereerst word in dit hoofdstuk het onderwerp van deze scriptie behandeld. Dit word gedaan door eerst in paragraaf \ref{chap:motivation} de aanleiding van het onderzoek te bespreken. Waarna de relevantie in  paragraaf \ref{chap:relevance} wordt besproken en aansluitend in
+paragraaf \ref{chap:researchQuestions} de doel- en vraagstellingen zijn geformuleerd.
+
+Het verdere verslag bestaat uit de resultaten van het onderzoek. Het begint met de eerste deelvraag waar de resultaten van het algemene onderzoek naar een aantal basis technische termen in blockchain-technologie en gerelateerde concepten zoals smart contracts word gedaan. Hierna worden er gekeken naar de implementatie van het proof of concept, door de requirements te onderzoeken zodat er in het laatste gedeelte naar de staat van de blockchain technologie gekeken kan worden en een aantal beslissingen naar de oplossingsrichting gemaakt kunnen worden.
+
+\section{Aanleiding}\label{chap:motivation}
+Zoals al aangegeven in het plan van aanpak verzekeren verzekeringsmaatschappijen zoals Allianz panden voor miljoenen. Dit type verzekeringen wordengedeeld met meerdere verzekeraars, om zo het risico te verspreiden. Dit principe heet co-insurance en het probleem hiermee en ook gelijk de aanleiding voor dit onderzoek is dat het claimproces te veel tijd kost voordat deze wordt uitgekeerd naar de klant. Waardoor klanten van Allianz ontevreden zijn. Dit komt omdat dit proces door de verschillende instanties op verschillende handmatige manier worden uitgevoerd. Het proces wordt bijvoorbeeld bij Allianz gedaan met Excel bestanden, maar dit verschilt per verzekeringmaatschappij.
 Een claim kan dus vaak meer dan 3 maanden duren voordat deze werkelijk wordt uitbetaald.
 
-\section{Doel en onderzoeksvragen}
-Het doel van dit scriptie is om aan te tonen hoe blockchaintechnologie en smart contracts gebruikt kunnen worden om informatie over claims van verzekeringen veilig te delen en te controleren tussen partijen die elkaar niet noodzakelijk vertrouwen.\par
-Dit wordt bewezen door een proof-of-concept software applicatie voor de use case van elektronische verzekeringgegevens. De resultaten van het onderzoek kan buiten de scope van dit onderzoek toegepast worden voor andere usecases. Het doel van het onderzoek kan worden opgesplitst in de volgende drie onderzoeksvragen:
-\begin{itemize}
-  \item \textbf{Onderzoeksvraag 1: Uit welke use cases, requirements en concerns bestaat het huidige proces van Allianz?}
-Om deze vraag te beantwoorden, zal ook een literatuuronderzoek worden uitgevoerd. Verder zal er een onderzoek worden gedaan naar de bestaande frameworks en technologieën voor data-opslag (met en zonder de blockchain technologie). Het laatste deel zal worden gedaan door een vergelijking uit te voeren op de verschillende technologieën.
+\section{Relevantie}\label{chap:relevance}
+De relevantie van dit onderzoek is om de laatste technologie op software gebied te onderzoeken om hiermee een proof of concept te ontwikkelen. In dit geval heeft de opdrachtgever aangegeven om in dit onderzoek naar de blockchain en smart contracts te willen kijken.
 
-  \item \textbf{Onderzoeksvraag 2: Welke kansen \& knelpunten bestaan bij het toepassen van de blockchain?} -
-  \item \textbf{Onderzoeksvraag 3: Hoe automatiseer je het huidige proces met de blockchain?} -
-\end{itemize}
 \newpage
 
-\section{Limitaties}
-This PoC will strictly consist of the code necessary for the smart contracts, which
-define most of the operational logic and basic permissions management. Considering
-the time constraints of this thesis (approximately six months) and abundance of
-existing blockchains, no blockchain will be programmed. However, in Section 3.2.4
-and in 2.2.3, there is a discussion of blockchains design considerations for the extension
-of the PoC. The thesis discusses cryptography used in blockchains and some
-additional encryption mechanisms are suggested for the PoC. These are however
-relying on existing technologies and implementations and are not part of the smart
-contracts code. One could also argue that other parties involved in the economics
-and regulation of health care such as insurance companies, the Ministry of public
-health or the medical products agency should be included. Although these types
-of users are not implemented with their specific requirements, in the PoC, they are considered and discussed in Section 5.2. Another highly relevant subject, important
-for the application of block-chain technology to handling of personal data such as in
-the medication plan, are legal considerations. Since this is a technical thesis, most
-legal requirements are not discussed but the ambition is that data privacy laws shall
-be honoured.
+\section{Probleemstelling}\label{chap:researchQuestions}
+%Wat is de huidige situatie. Wat is de gewenste situatie? Wat is het verschil tussen de huidige en gewenste situatie?
+Het doel van deze scriptie is om aan te tonen hoe blockchaintechnologie en smart contracts gebruikt kunnen worden om informatie over claims van verzekeringen veilig te delen en te controleren tussen partijen die elkaar niet noodzakelijk vertrouwen.\par
+Dit wordt bewezen door een proof-of-concept software applicatie voor de use case van elektronische verzekeringgegevens. De resultaten van het onderzoek kan buiten de scope van dit onderzoek toegepast worden voor andere usecases.
+\par
+De hoofdvraag van dit onderzoek is (\textbf{MRQ}):\\
+\textbf{MRQ - \researchQuestionMain} Deze vraag is onderverdeeld in verschillende deelvragen (\textbf{SRQ}):
+\begin{itemize}
+	\item \textbf{SRQ1: \researchQuestionOne} literatuuronderzoek naar een aantal basis technische termen in blockchain-technologie en gerelateerde concepten zoals smart contracts word gedaan.
+  \item \textbf{SRQ2: \researchQuestionTwo} Om deze vraag te beantwoorden, zal ook een literatuuronderzoek worden uitgevoerd naar de verschillende implementaties van de blockchain technologie en beslissingen worden genomen op basis van eigenschappen die belangrijk zijn voor het ontwikkelen van de Proof of Concept.
+  \item \textbf{SRQ3: \researchQuestionThree} Om deze vraag te beantwoorden word er samen met de klant Allianz gekeken naar het claim proces en worden er een software architectuur opgebouwd.
+\end{itemize}
 
-\section{Gerelateerd werk}
-Since the start of this thesis (August 2016), much related work has been done,
-advances in blockchain technology and large open source efforts in development have been made. (Zyskind et al., 2015), presents ENIGMA, a blockchain-based solution for secure multi-party computations. They suggest using blockchains for permissions management and for storing pointers to encrypted data, while the actual data is hosted by a trusted, blind escrow service. (Kosba, Miller, Shi, Wen, & Papamanthou, 2015) lay the groundwork for a project called HAWK, a framework and compiler for writing privacy-preserving smart contracts. (Kish & Topol, 2015) Propose in Nature Biotechnology, the use of blockchain technology for managing patient data but do not discuss a specific implementation or technical discussion. (Azaria, Ekblaw, Vieira, & Lippman, 2016) design a modular system for storing electronic medical records on a blockchain, they suggest a Proof-of-Work system for incentivising the participation of doctors and hospitals in the system. Med-Vault (“Medical Records Project Wins Top Prize at Blockchain Hackathon,” 2015) were present in the media but have not published any details regarding their blockchain-EMR. To the best knowledge of the author, there have been no functional, electronic medical prescriptions based on blockchain technology built so far
+Het proof of concept (PoC) in dit verslag zal alleen bestaan uit de code die nodig is voor de smart contracts. De smart contracts maken het grootste deel uit van de core business logica en autorisatie. Aangezien de korte projectduur van 3 maanden en het overvloed aan bestaande blockchain en smart contract implementaties is er gekozen om geen blockchain te programmeren.
+\newpage
