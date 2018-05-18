@@ -1,30 +1,31 @@
 \chapter{Inleiding}
-Allereerst word in dit hoofdstuk het onderwerp van deze scriptie behandeld. Dit word gedaan door eerst in paragraaf \ref{chap:motivation} de aanleiding van het onderzoek te bespreken. Waarna de relevantie in  paragraaf \ref{chap:relevance} wordt besproken en aansluitend in
-paragraaf \ref{chap:researchQuestions} de doel- en vraagstellingen zijn geformuleerd.
+Allereerst wordt in dit hoofdstuk het onderwerp van deze scriptie behandeld. Dit word gedaan door in paragraaf \ref{chap:motivation} de aanleiding van het onderzoek te bespreken. Waarna de relevantie in paragraaf \ref{chap:relevance} wordt besproken en aansluitend in paragraaf \ref{chap:researchQuestions} de doel- en vraagstellingen worden geformuleerd.
 
-Het verdere verslag bestaat uit de resultaten van het onderzoek. Het begint met de eerste deelvraag waar de resultaten van het algemene onderzoek naar een aantal basis technische termen in blockchain-technologie en gerelateerde concepten zoals smart contracts word gedaan. Hierna worden er gekeken naar de implementatie van het proof of concept, door de requirements te onderzoeken zodat er in het laatste gedeelte naar de staat van de blockchain technologie gekeken kan worden en een aantal beslissingen naar de oplossingsrichting gemaakt kunnen worden.
+Het verdere verslag bestaat uit de resultaten van het onderzoek. Er is in het begin algemeen onderzoek gedaan naar de blockchain-technologie en gerelateerde onderwerpen zoals smart contracts. Waarna er daarna verslag wordt gedaan over de implementatie en architectuur van beide de blockchain technologie en het proof of concept dat is ontwikkeld. Waarmee in paragraaf \ref{chap:conclusion} de hoofdvraag wordt beantwoord. Hierna volgt een hoofdstuk voor verdere discussie en onderzoek.
 
 \section{Aanleiding}\label{chap:motivation}
-Zoals al aangegeven in het plan van aanpak verzekeren verzekeringsmaatschappijen zoals Allianz panden voor miljoenen. Dit type verzekeringen wordengedeeld met meerdere verzekeraars, om zo het risico te verspreiden. Dit principe heet co-insurance en het probleem hiermee en ook gelijk de aanleiding voor dit onderzoek is dat het claimproces te veel tijd kost voordat deze wordt uitgekeerd naar de klant. Waardoor klanten van Allianz ontevreden zijn. Dit komt omdat dit proces door de verschillende instanties op verschillende handmatige manier worden uitgevoerd. Het proces wordt bijvoorbeeld bij Allianz gedaan met Excel bestanden, maar dit verschilt per verzekeringmaatschappij.
-Een claim kan dus vaak meer dan 3 maanden duren voordat deze werkelijk wordt uitbetaald.
+Zoals al aangegeven in het plan van aanpak \cite{pva} verzekeren verzekeringsmaatschappijen zoals Allianz panden voor miljoenen. Dit type verzekeringen worden gedeeld met meerdere verzekeraars, om zo het risico te verspreiden. Dit principe heet co-insurance en het probleem hiermee en ook gelijk de aanleiding voor dit onderzoek is dat het claimproces te veel tijd kost voordat deze wordt uitgekeerd naar de klant. Waardoor klanten van Allianz ontevreden zijn. Dit komt omdat dit proces door de verschillende instanties op verschillende handmatige manier worden uitgevoerd. Het proces wordt bijvoorbeeld bij Allianz gedaan met Excel bestanden, maar dit verschilt per verzekeringmaatschappij. Een claim kan dus vaak meer dan 3 maanden duren voordat deze werkelijk wordt uitbetaald.
 
 \section{Relevantie}\label{chap:relevance}
-De relevantie van dit onderzoek is om de laatste technologie op software gebied te onderzoeken om hiermee een proof of concept te ontwikkelen. In dit geval heeft de opdrachtgever aangegeven om in dit onderzoek naar de blockchain en smart contracts te willen kijken.
+De relevantie van dit onderzoek is om de laatste technologie op softwaregebied te onderzoeken en hiermee een proof of concept te ontwikkelen. In dit geval heeft de opdrachtgever aangegeven om in dit onderzoek naar de blockchain en smart contracts te willen kijken.
 
 \newpage
 
 \section{Probleemstelling}\label{chap:researchQuestions}
-%Wat is de huidige situatie. Wat is de gewenste situatie? Wat is het verschil tussen de huidige en gewenste situatie?
 Het doel van deze scriptie is om aan te tonen hoe blockchaintechnologie en smart contracts gebruikt kunnen worden om informatie over claims van verzekeringen veilig te delen en te controleren tussen partijen die elkaar niet noodzakelijk vertrouwen.\par
-Dit wordt bewezen door een proof-of-concept software applicatie voor de use case van elektronische verzekeringgegevens. De resultaten van het onderzoek kan buiten de scope van dit onderzoek toegepast worden voor andere usecases.
+Dit wordt bewezen door een proof-of-concept softwareapplicatie voor de use case van elektronische verzekeringsgegevens  te maken. Andere use-cases liggen buiten de scope van dit onderzoek.
 \par
-De hoofdvraag van dit onderzoek is (\textbf{MRQ}):\\
-\textbf{MRQ - \researchQuestionMain} Deze vraag is onderverdeeld in verschillende deelvragen (\textbf{SRQ}):
+De hoofdvraag (\textbf{MRQ}) van dit onderzoek is:
+\begin{center}
+	\textbf{\researchQuestionMain}
+\end{center}
+
+Deze vraag is onderverdeeld in verschillende deelvragen (\textbf{SRQ}):
 \begin{itemize}
-	\item \textbf{SRQ1: \researchQuestionOne} literatuuronderzoek naar een aantal basis technische termen in blockchain-technologie en gerelateerde concepten zoals smart contracts word gedaan.
-  \item \textbf{SRQ2: \researchQuestionTwo} Om deze vraag te beantwoorden, zal ook een literatuuronderzoek worden uitgevoerd naar de verschillende implementaties van de blockchain technologie en beslissingen worden genomen op basis van eigenschappen die belangrijk zijn voor het ontwikkelen van de Proof of Concept.
-  \item \textbf{SRQ3: \researchQuestionThree} Om deze vraag te beantwoorden word er samen met de klant Allianz gekeken naar het claim proces en worden er een software architectuur opgebouwd.
+	\item \textbf{SRQ1: \researchQuestionOne} om deze vraag te beantwoorden wordt er een  literatuuronderzoek uitgevoerd naar een technische basis termen rondom de blockchain-technologie en gerelateerde onderwerpen.
+  \item \textbf{SRQ2: \researchQuestionTwo} om deze vraag te beantwoorden wordt er een software architectuur opgebouwd op basis van de wensen van de opdrachtgever, waaruit een literatuur onderzoek en vergelijking wordt uitgevoerd op verschillende oplossingsrichtingen en technologieën.
+  \item \textbf{SRQ3: \researchQuestionThree} om deze vraag te beantwoorden wordt er een experiment uitgevoerd op basis van de kennis die is opgedaan in de vorige SRQ1 en SRQ2 deelvragen.
 \end{itemize}
 
-Het proof of concept (PoC) in dit verslag zal alleen bestaan uit de code die nodig is voor de smart contracts. De smart contracts maken het grootste deel uit van de core business logica en autorisatie. Aangezien de korte projectduur van 3 maanden en het overvloed aan bestaande blockchain en smart contract implementaties is er gekozen om geen blockchain te programmeren.
+De conclusie van deze deelvragen beantwoorden de hoofdvraag van dit onderzoek in paragraaf \ref{chap:conclusion}. Het resultaat van het experiment dat in SRQ3 wordt uitgevoerd zal in dit verslag alleen bestaan uit de smart contracts code. De verdere backend en front-end code die is ontwikkeld wordt naast dit document meegeleverd maar is te groot om opgenomen te worden in de bijlagen.\par
 \newpage
