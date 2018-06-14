@@ -31,11 +31,7 @@
 \usepackage[utf8]{inputenc}
 
 
-\newcommand{\researchQuestionMain}{``\textit{Hoe is de blockchain technologie in te zetten om het claimproces van Allianz te automatiseren?}''}
-
-\newcommand{\researchQuestionOne}{``\textit{Wat is de blockchain en hoe werkt het?}''}
-\newcommand{\researchQuestionTwo}{``\textit{Uit welke technologieën, use cases, requirements en concerns bestaat het te ontwikkelen proof of concept?}''}
-\newcommand{\researchQuestionThree}{``\textit{Welke kansen \& knelpunten bestaan bij het toepassen van de blockchain?}''}
+\newcommand{\researchQuestionMain}{``\textit{Wat is de blockchain en hoe werkt het?}''}
 
 %APA norm
 \usepackage{natbib}
@@ -90,7 +86,7 @@
 %%
 
 %% The title of the thesis:
-\title{Automatiseren Claim Process}
+\title{Onderzoeksverslag}
 
 %% The full name of the author (e.g.: James Smith):
 \author{Calum Iain Munro}
@@ -172,9 +168,7 @@ Teamlid: Calum Iain Munro (549288)\\
 \input{chapters/4.inleiding}
 \input{chapters/5.blockchain}
 \input{chapters/6.architectblockchain}
-\input{chapters/7.currentState}
-\input{chapters/8.implementatie}
-\input{chapters/9.conclusie}
+\input{chapters/7.conclusie}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -189,180 +183,8 @@ Teamlid: Calum Iain Munro (549288)\\
 % %% Appendix:
 % %%
 
-\chapter{Bijlagen}
-\appendix
-\chapter{Decision Forces View}\label{appendix:decisionForcesView}
-\begin{figure}[h!]
-    \begin{center}
-        \includegraphics[width=\paperwidth-100]{images/decisonForcesView}
-        \caption{Decision Forces View.}
-    \end{center}
-\end{figure}
+%\chapter{Bijlagen}
 
-\newpage
-
-\chapter{Smart contract: Claims}\label{appendix:contract}
-\begin{lstlisting}[language=Solidity]
-pragma solidity ^0.4.15;
-
-contract Claims {
-
-    // Claim struct
-    struct Claim {
-        bytes32 id;
-        string policyId;
-        ClaimTypes claimType;
-        uint amount;
-        State state;
-        bool exists;
-        bytes32[] insurers;
-    }
-
-    struct Vote {
-        bool value;
-        bool hasVoted;
-        bool canVote;
-    }
-
-    enum State {New, Pending, Approved, Rejected, AutoApproved}
-    enum ClaimVote {Approved, Rejected}
-    enum ClaimTypes {NA, GlasDamage, FireDamage, StormDamage, Theft}
-
-    // Who owns this contract
-    address private authority;
-
-    // Claim[] claims;
-
-    mapping(bytes32 => Claim) claims;
-    mapping(bytes32 => mapping(bytes32 => Vote)) claimVotes;
-
-    // Map of claims for addresses
-    mapping(bytes32 => uint) claimsIndexMapping;
-    mapping(address => bytes32[]) addressClaimsMapping;
-
-    event newClaim(bytes32 id, string policyId, ClaimTypes claimType, uint amount);
-    event claimApproved(bytes32 id);
-    event claimRejected(bytes32 id);
-    event claimAutoApproved(bytes32 id);
-    event logVote(bool value, bool hasVotes, bool canVote);
-
-    // Construct me
-    function Claims() public {
-        authority = msg.sender;
-    }
-
-    function createClaim(bytes32 id, string policyId, ClaimTypes claimType, uint amount, bytes32[] insurers) public {
-        require(!hasClaim(id));
-        var claim = Claim(
-            id,
-            policyId,
-            claimType,
-            amount,
-            State.New,
-            true,
-            insurers
-        );
-
-        for (uint i = 0; i < insurers.length; i ++) {
-            claimVotes[id][insurers[i]] = Vote(false, false, true);
-        }
-
-        claims[id] = claim;
-        addressClaimsMapping[msg.sender].push(id);
-
-        newClaim(id, policyId, claimType, amount);
-        if (shouldAutoApprove(claim)) {
-            claim.state = State.AutoApproved;
-            claims[id] = claim;
-
-            claimAutoApproved(claim.id);
-        }
-    }
-
-    function getClaim(bytes32 id) public constant returns (
-        string policyId,
-        ClaimTypes claimType,
-        uint amount,
-        uint state
-    ) {
-        require(hasClaim(id));
-        var claim = claims[id];
-
-        policyId = claim.policyId;
-        claimType = claim.claimType;
-        amount = claim.amount;
-        state = uint(claim.state);
-    }
-
-    function vote(bytes32 claimId, bytes32 insurerId, bool vote) public {
-        require(hasClaim(claimId));
-
-        var claim = claims[claimId];
-        claim.state = State.Pending;
-        claims[claimId] = claim;
-        
-        var voteObject = claimVotes[claimId][insurerId];
-        require(!voteObject.hasVoted);
-
-        voteObject.value = vote;
-        voteObject.hasVoted = true;
-        claimVotes[claimId][insurerId] = voteObject;
-
-        if (hasVoteFinished(claimId)) {
-            var approved = true;
-            for (uint i = 0; i < claim.insurers.length; i++) {
-                voteObject = claimVotes[claimId][claim.insurers[i]];
-                
-                if (!voteObject.value) {
-                    approved = false;
-                    i = claim.insurers.length + 1;
-                }
-            }
-            
-            if (approved) {
-                claim.state == State.Approved;
-                claimApproved(claimId);
-            } else {
-                claim.state == State.Rejected;
-                claimRejected(claimId);
-            }
-            
-            claims[claimId] = claim;
-        }
-    }
-
-    function setClaimState(bytes32 id, State state) internal {
-        var claim = claims[id];
-
-        claim.state = state;
-        claims[id] = claim;
-    }
-
-    function shouldAutoApprove(Claim claim) internal constant returns (bool) {
-        return (
-            (claim.claimType == ClaimTypes.Theft && claim.amount < 1000)
-        );
-    }
-
-    function hasClaim(bytes32 id) internal constant returns (bool) {
-        Claim storage claim = claims[id];
-        return claim.exists == true;
-    }
-    
-    function hasVoteFinished(bytes32 claimId) internal constant returns (bool) {
-        var claim = claims[claimId];
-        uint votes = 0;
-        for (uint i = 0; i < claim.insurers.length; i++) {
-            var vote = claimVotes[claimId][claim.insurers[i]];
-        
-            if (vote.hasVoted) {
-                votes++;
-            }
-        }
-
-        return votes == claim.insurers.length;
-    }
-}
 \end{lstlisting}
 
 

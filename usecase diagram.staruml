@@ -1,0 +1,35 @@
+#https://www.planttext.com/
+@startuml
+
+title Claimsysteem - Use Case Diagram
+
+rectangle Claimsysteem {
+    (Claim indienen) as claim_create
+    (Claim inzien) as claim_overview
+    (Vote claim) as claim_vote
+    (Polissen inzien) as polis_overview
+    (Polis aanmaken) as polis_create
+    (Verzekeraars inzien) as insurer_overview
+    (Verzekeraar aanmaken) as insurer_create
+}
+
+:Klant: 
+:Verzekeraar:
+
+Klant --> (claim_create)
+Verzekeraar --> (claim_create)
+
+Klant --> (claim_overview)
+Verzekeraar --> (claim_overview)
+
+Verzekeraar --> (claim_vote)
+
+Verzekeraar --> (polis_overview)
+
+Verzekeraar --> (polis_create)
+
+Verzekeraar --> (insurer_overview)
+
+Verzekeraar --> (insurer_create)
+
+@enduml
