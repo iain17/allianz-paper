@@ -161,8 +161,8 @@
     \newcommand{\printthesisglossary}{\printglossary[nonumberlist]}
     \newcommand{\cam@printthesisglossary}{%
         \cleardoublepage%
-        \pagestyle{empty}%
-        \renewcommand{\glossarypreamble}{\thispagestyle{empty}}%
+        \pagestyle{plain}%
+        \renewcommand{\glossarypreamble}{\thispagestyle{plain}}%
         \printthesisglossary%
     }
 \fi
@@ -476,7 +476,7 @@ for the degree of Doctor of Philosophy%
 \else
 
 \chapter*{Abstract}
-\thispagestyle{empty}
+\thispagestyle{plain}
 \@abstract{}
 \fi
 
@@ -496,7 +496,7 @@ for the degree of Doctor of Philosophy%
 %
 \else
 \chapter*{Declaration}
-\thispagestyle{empty}
+\thispagestyle{plain}
 This dissertation is the result of my own work and includes nothing which is the outcome
 of work done in collaboration except as declared in the Preface and specified in the text.
 It is not substantially the same as any that I have submitted, or am concurrently
@@ -534,7 +534,7 @@ This dissertation does not exceed the prescribed limit of 60\,000 words.
 %
 \else
 \chapter*{Acknowledgements}
-\thispagestyle{empty}
+\thispagestyle{plain}
 \@acknowledgements{}
 \fi}
 \fi
@@ -547,8 +547,8 @@ This dissertation does not exceed the prescribed limit of 60\,000 words.
 
 % The following command prevents the page number to be displayed on the first
 % page of the TOC.
-% \addtocontents{toc}{\protect\thispagestyle{empty}}
-% \pagestyle{empty}
+% \addtocontents{toc}{\protect\thispagestyle{plain}}
+% \pagestyle{plain}
 \tableofcontents{}
 
 % \ifcam@glossary%
@@ -556,7 +556,7 @@ This dissertation does not exceed the prescribed limit of 60\,000 words.
 % \fi
 
 % % \cleardoublepage
-% \pagestyle{plain}
+ \pagestyle{plain}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
